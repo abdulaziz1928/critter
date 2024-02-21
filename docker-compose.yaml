@@ -1,0 +1,15 @@
+version: '3.0'
+
+services:
+  mysql:
+    command: --innodb_force_recovery=2
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: critter
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql_data:/var/lib/mysql

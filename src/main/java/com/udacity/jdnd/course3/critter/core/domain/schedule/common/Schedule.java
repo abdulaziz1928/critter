@@ -1,0 +1,32 @@
+package com.udacity.jdnd.course3.critter.core.domain.schedule.common;
+
+import com.udacity.jdnd.course3.critter.core.domain.pet.common.Pet;
+import com.udacity.jdnd.course3.critter.core.domain.user.common.Employee;
+import com.udacity.jdnd.course3.critter.core.domain.user.common.EmployeeSkillType;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+@Entity
+@Data
+public class Schedule {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @ManyToMany
+    private List<Employee> employees;
+
+    @ManyToMany
+    List<Pet> pets;
+
+    private LocalDate date;
+
+    @ElementCollection
+    private Set<EmployeeSkillType> activities;
+
+
+}
