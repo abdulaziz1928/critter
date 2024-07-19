@@ -10,7 +10,7 @@ public interface PetService {
 
     List<Pet> findAllPets();
 
-    List<Pet> findAllPetsByOwnerId(long ownerId);
+    List<Pet> findAllPetsByCustomerId(long ownerId);
 
     Pet savePet(Pet pet);
 }

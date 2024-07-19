@@ -7,15 +7,15 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class PetServiceImpl implements PetService {
     private final PetRepository repository;
 
     public Pet findPet(long id) {
-        return repository.findById(id).orElseThrow(() -> new PetNotFoundException(id));
+        return repository.findById(id)
+                .orElseThrow(() -> new PetNotFoundException(id));
     }
 
     @Override
@@ -24,13 +24,13 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    public List<Pet> findAllPetsByOwnerId(long ownerId) {
+    public List<Pet> findAllPetsByCustomerId(long ownerId) {
         return repository.getPetsByCustomerId(ownerId);
     }
 
     @Override
     public Pet savePet(Pet pet) {
-        return null;
+        return repository.save(pet);
     }
 
 }

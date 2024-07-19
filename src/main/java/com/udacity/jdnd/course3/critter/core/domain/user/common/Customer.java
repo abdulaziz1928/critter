@@ -19,6 +19,6 @@ public class Customer {
     private String phoneNumber;
     private String notes;
 
-    @OneToMany
+    @OneToMany(targetEntity = Pet.class,fetch = FetchType.EAGER)
     private List<Pet> petList;
 }

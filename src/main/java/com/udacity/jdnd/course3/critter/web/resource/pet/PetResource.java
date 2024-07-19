@@ -8,10 +8,12 @@ import com.udacity.jdnd.course3.critter.core.domain.pet.common.Pet;
 import com.udacity.jdnd.course3.critter.core.domain.schedule.common.Schedule;
 import com.udacity.jdnd.course3.critter.web.view.PetDTO;
 import com.udacity.jdnd.course3.critter.web.view.ScheduleDTO;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
  * Handles web requests related to Pets.
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping("/pet")
 public class PetResource {
 
@@ -29,7 +32,7 @@ public class PetResource {
     private ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<PetDTO> savePet(@RequestBody PetDTO petDTO) {
+    public ResponseEntity<PetDTO> savePet(@Valid @RequestBody PetDTO petDTO) {
         Pet savedPet = savePetAction.execute(petDTO);
         PetDTO savedPetDTO = mapper.map(savedPet, PetDTO.class);
         return ResponseEntity.ok(savedPetDTO);

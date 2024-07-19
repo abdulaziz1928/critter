@@ -4,6 +4,7 @@ import com.udacity.jdnd.course3.critter.core.action.schedule.*;
 import com.udacity.jdnd.course3.critter.core.domain.schedule.common.Schedule;
 import com.udacity.jdnd.course3.critter.core.domain.schedule.common.ScheduleForType;
 import com.udacity.jdnd.course3.critter.web.view.ScheduleDTO;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 /**
  * Handles web requests related to Schedules.
  */
+@AllArgsConstructor
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleResource {
@@ -38,7 +40,7 @@ public class ScheduleResource {
     }
 
     @GetMapping("/pet/{petId}")
-    public ResponseEntity<List<ScheduleDTO>> getScheduleForPet(@PathVariable long petId) {
+    public ResponseEntity<List<ScheduleDTO>> getScheduleForPet(@PathVariable("petId") long petId) {
         return getSchedules(petId, ScheduleForType.PET);
     }
 

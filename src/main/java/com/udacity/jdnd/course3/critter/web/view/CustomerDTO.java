@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,5 +19,5 @@ public class CustomerDTO {
     private String phoneNumber;
     private String notes;
     @NonNull
-    private List<Long> petIds;
+    private List<Long> petIds=new ArrayList<>();
 }

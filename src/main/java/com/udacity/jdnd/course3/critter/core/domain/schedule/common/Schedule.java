@@ -17,11 +17,11 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany
-    private List<Employee> employees;
+    @ManyToMany(targetEntity = Employee.class)
+    private Set<Employee> employees;
 
-    @ManyToMany
-    List<Pet> pets;
+    @ManyToMany(targetEntity = Pet.class)
+    Set<Pet> pets;
 
     private LocalDate date;
 
