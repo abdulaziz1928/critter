@@ -27,15 +27,15 @@ public class ScheduleResource {
 
     @PostMapping
     public ResponseEntity<ScheduleDTO> createSchedule(@RequestBody ScheduleDTO scheduleDTO) {
-        Schedule createdSchedule = createScheduleAction.execute(scheduleDTO);
-        ScheduleDTO createdScheduleDTO = mapper.map(createdSchedule, ScheduleDTO.class);
+        var createdSchedule = createScheduleAction.execute(scheduleDTO);
+        var createdScheduleDTO = mapper.map(createdSchedule, ScheduleDTO.class);
         return ResponseEntity.ok(createdScheduleDTO);
     }
 
     @GetMapping
     public ResponseEntity<List<ScheduleDTO>> getAllSchedules() {
-        List<Schedule> schedules = getAllSchedulesAction.execute();
-        List<ScheduleDTO> scheduleDTOS = getScheduleDTOS(schedules);
+        var schedules = getAllSchedulesAction.execute();
+        var scheduleDTOS = getScheduleDTOS(schedules);
         return ResponseEntity.ok(scheduleDTOS);
     }
 
@@ -55,8 +55,8 @@ public class ScheduleResource {
     }
 
     private ResponseEntity<List<ScheduleDTO>> getSchedules(long id, ScheduleForType type) {
-        List<Schedule> schedules = getScheduleForAction.execute(id, type);
-        List<ScheduleDTO> scheduleDTOS = getScheduleDTOS(schedules);
+        var schedules = getScheduleForAction.execute(id, type);
+        var scheduleDTOS = getScheduleDTOS(schedules);
         return ResponseEntity.ok(scheduleDTOS);
     }
 

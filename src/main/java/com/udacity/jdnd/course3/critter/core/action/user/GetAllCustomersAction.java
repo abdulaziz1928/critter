@@ -10,9 +10,7 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class GetAllCustomersAction {
-
     private final UserService userService;
-
 
     public List<Customer> execute(){
         return userService.findAllCustomers();

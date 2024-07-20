@@ -2,21 +2,17 @@ package com.udacity.jdnd.course3.critter.core.domain.schedule.service;
 
 import com.udacity.jdnd.course3.critter.core.domain.schedule.common.Schedule;
 import com.udacity.jdnd.course3.critter.core.domain.schedule.common.ScheduleRepository;
-import com.udacity.jdnd.course3.critter.core.domain.schedule.exception.ScheduleNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Transactional
 @Service
 public class ScheduleServiceImpl implements ScheduleService {
     private final ScheduleRepository repository;
-
-    public Schedule findScheduleById(long id) {
-        return this.repository.findById(id)
-                .orElseThrow(() -> new ScheduleNotFoundException(id));
-    }
 
     public List<Schedule> findAllSchedules() {
         return this.repository.findAll();

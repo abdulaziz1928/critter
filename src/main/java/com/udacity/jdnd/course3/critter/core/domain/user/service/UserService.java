@@ -11,12 +11,9 @@ import java.util.Set;
 
 public interface UserService {
     List<Customer> findAllCustomers();
-
     Customer findCustomerById(long id);
-
     Customer saveCustomer(Customer customer);
-    List<Employee> findEmployeesForService(DayOfWeek date, Set<EmployeeSkillType> skills);
+    Set<Employee> findEmployeesForService(DayOfWeek date, Set<EmployeeSkillType> skills);
     Employee findEmployeeById(long id);
     Employee saveEmployee(Employee employee);
-
 }

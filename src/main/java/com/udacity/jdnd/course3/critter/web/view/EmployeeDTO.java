@@ -14,7 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 public class EmployeeDTO {
-    private long id;
+    private Long id;
     private String name;
     private Set<EmployeeSkillType> skills;
     private Set<DayOfWeek> daysAvailable;

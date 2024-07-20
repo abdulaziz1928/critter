@@ -3,8 +3,8 @@ package com.udacity.jdnd.course3.critter.web.infrastructure.config;
 import com.udacity.jdnd.course3.critter.core.domain.pet.common.Pet;
 import com.udacity.jdnd.course3.critter.core.domain.schedule.common.Schedule;
 import com.udacity.jdnd.course3.critter.core.domain.user.common.Customer;
-import com.udacity.jdnd.course3.critter.web.infrastructure.config.maps.CustomerMappings;
-import com.udacity.jdnd.course3.critter.web.infrastructure.config.maps.ScheduleMappings;
+import com.udacity.jdnd.course3.critter.web.infrastructure.config.mappings.CustomerMappings;
+import com.udacity.jdnd.course3.critter.web.infrastructure.config.mappings.ScheduleMappings;
 import com.udacity.jdnd.course3.critter.web.view.CustomerDTO;
 import com.udacity.jdnd.course3.critter.web.view.PetDTO;
 import com.udacity.jdnd.course3.critter.web.view.ScheduleDTO;
@@ -56,7 +56,7 @@ public class ModelMapperConfig {
                 .createTypeMap(PetDTO.class, Pet.class)
                 .addMappings(
                         mapping ->
-                                mapping.<Long>map(PetDTO::getOwnerId, Pet::setId)
+                                mapping.map(PetDTO::getOwnerId, Pet::setId)
                 );
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return mapper;

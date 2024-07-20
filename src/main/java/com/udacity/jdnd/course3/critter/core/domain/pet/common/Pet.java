@@ -20,21 +20,16 @@ import java.util.List;
 @NoArgsConstructor
 public class Pet {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pet_seq")
+    @SequenceGenerator(name = "pet_seq", sequenceName = "pet_seq", allocationSize = 1)
+    private long id;
     private PetType type;
-
     @Nationalized
     private String name;
-
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Customer.class)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Customer customer;
-
     private LocalDate birthDate;
-
     private String notes;
-
     @ManyToMany(targetEntity = Schedule.class)
     List<Schedule> schedules;
 

@@ -82,12 +82,12 @@ public class UserResource {
     }
 
     @GetMapping("/employee/availability")
-    public ResponseEntity<List<EmployeeDTO>> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
-        List<Employee> employees = findEmployeesForServiceAction.execute(employeeDTO);
+    public ResponseEntity<Set<EmployeeDTO>> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
+        Set<Employee> employees = findEmployeesForServiceAction.execute(employeeDTO);
 
-        List<EmployeeDTO> employeesDTO = employees.stream()
+        Set<EmployeeDTO> employeesDTO = employees.stream()
                 .map(customer -> mapper.map(customer, EmployeeDTO.class))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
         return ResponseEntity.ok(employeesDTO);
 
     }

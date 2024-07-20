@@ -1,7 +1,6 @@
 package com.udacity.jdnd.course3.critter.web.view;
 
 import lombok.Getter;
-import lombok.NonNull;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -14,10 +13,9 @@ import java.util.List;
 @Getter
 @Setter
 public class CustomerDTO {
-    private long id;
+    private Long id;
     private String name;
     private String phoneNumber;
     private String notes;
-    @NonNull
-    private List<Long> petIds=new ArrayList<>();
+    private List<Long> petIds = new ArrayList<>();
 }

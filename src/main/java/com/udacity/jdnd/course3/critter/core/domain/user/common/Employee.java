@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,21 +18,15 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employee_seq")
+    @SequenceGenerator(name = "employee_seq", sequenceName = "employee_seq", allocationSize = 1)
     private long id;
     private String name;
-    @ElementCollection(targetClass = EmployeeSkillType.class)
-//    @Enumerated(EnumType.STRING)
-    @Enumerated(EnumType.STRING)
-    private Set<EmployeeSkillType> skills;
-    @ElementCollection(targetClass = DayOfWeek.class)
-    @Enumerated(EnumType.STRING)
-    private Set<DayOfWeek> daysAvailable;
-
+    @ElementCollection
+    private Set<EmployeeSkillType> skills = new HashSet<>();
+    @ElementCollection
+    private Set<DayOfWeek> daysAvailable = new HashSet<>();
     @ManyToMany(targetEntity = Schedule.class)
     List<Schedule> schedules;
-
-
 }

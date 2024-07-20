@@ -13,8 +13,8 @@ public class CreateScheduleAction {
     private final ModelMapper mapper;
     private final ScheduleService scheduleService;
 
-    public Schedule execute(ScheduleDTO scheduleDTO){
-        var schedule=mapper.map(scheduleDTO,Schedule.class);
+    public Schedule execute(ScheduleDTO scheduleDTO) {
+        var schedule = mapper.map(scheduleDTO, Schedule.class);
         return scheduleService.createSchedule(schedule);
     }
 }

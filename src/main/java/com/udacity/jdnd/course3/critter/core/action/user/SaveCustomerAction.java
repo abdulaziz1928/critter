@@ -15,7 +15,7 @@ public class SaveCustomerAction {
     private final UserService userService;
 
     public Customer execute(CustomerDTO customerDTO) {
-        Customer customer = mapper.map(customerDTO, Customer.class);
+        var customer = mapper.map(customerDTO, Customer.class);
         return userService.saveCustomer(customer);
     }
 }

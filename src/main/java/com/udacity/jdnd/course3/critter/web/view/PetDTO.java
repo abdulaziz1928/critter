@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class PetDTO {
-    private long id;
+    private Long id;
     private PetType type;
     private String name;
     private long ownerId;

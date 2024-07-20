@@ -7,26 +7,19 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
 @Entity
 @Data
 public class Schedule {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "schedule_seq")
+    @SequenceGenerator(name = "schedule_seq", sequenceName = "schedule_seq", allocationSize = 1)
     private long id;
-
     @ManyToMany(targetEntity = Employee.class)
     private Set<Employee> employees;
-
     @ManyToMany(targetEntity = Pet.class)
     Set<Pet> pets;
-
     private LocalDate date;
-
     @ElementCollection
     private Set<EmployeeSkillType> activities;
-
-
 }

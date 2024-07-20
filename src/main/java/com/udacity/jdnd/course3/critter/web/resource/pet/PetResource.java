@@ -5,9 +5,7 @@ import com.udacity.jdnd.course3.critter.core.action.pet.GetPetsAction;
 import com.udacity.jdnd.course3.critter.core.action.pet.GetPetsByOwnerAction;
 import com.udacity.jdnd.course3.critter.core.action.pet.SavePetAction;
 import com.udacity.jdnd.course3.critter.core.domain.pet.common.Pet;
-import com.udacity.jdnd.course3.critter.core.domain.schedule.common.Schedule;
 import com.udacity.jdnd.course3.critter.web.view.PetDTO;
-import com.udacity.jdnd.course3.critter.web.view.ScheduleDTO;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -32,36 +30,36 @@ public class PetResource {
     private ModelMapper mapper;
 
     @PostMapping
-    public ResponseEntity<PetDTO> savePet(@Valid @RequestBody PetDTO petDTO) {
-        Pet savedPet = savePetAction.execute(petDTO);
-        PetDTO savedPetDTO = mapper.map(savedPet, PetDTO.class);
+    public ResponseEntity<PetDTO> savePet(@RequestBody PetDTO petDTO) {
+        var savedPet = savePetAction.execute(petDTO);
+        var savedPetDTO = mapper.map(savedPet, PetDTO.class);
         return ResponseEntity.ok(savedPetDTO);
     }
 
     @GetMapping("/{petId}")
     public ResponseEntity<PetDTO> getPet(@PathVariable long petId) {
-        Pet pet = getPetAction.execute(petId);
-        PetDTO petDTO = mapper.map(pet, PetDTO.class);
+        var pet = getPetAction.execute(petId);
+        var petDTO = mapper.map(pet, PetDTO.class);
         return ResponseEntity.ok(petDTO);
     }
 
     @GetMapping
     public ResponseEntity<List<PetDTO>> getPets() {
-        List<Pet> pets = getPetsAction.execute();
-        List<PetDTO> petDTOS = getPetDTOS(pets);
-        return ResponseEntity.ok(petDTOS);
+        var pets = getPetsAction.execute();
+        return getPetDTOS(pets);
+
     }
 
     @GetMapping("/owner/{ownerId}")
     public ResponseEntity<List<PetDTO>> getPetsByOwner(@PathVariable long ownerId) {
-        List<Pet> pets = getPetsByOwnerAction.execute(ownerId);
-        List<PetDTO> petDTOS = getPetDTOS(pets);
-        return ResponseEntity.ok(petDTOS);
+        var pets = getPetsByOwnerAction.execute(ownerId);
+        return getPetDTOS(pets);
     }
 
-    private List<PetDTO> getPetDTOS(List<Pet> pets) {
-        return pets.stream()
+    private ResponseEntity<List<PetDTO>> getPetDTOS(List<Pet> pets) {
+        var petDTOS = pets.stream()
                 .map(pet -> mapper.map(pet, PetDTO.class))
                 .collect(Collectors.toList());
+        return ResponseEntity.ok(petDTOS);
     }
 }

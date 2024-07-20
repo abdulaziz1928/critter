@@ -5,6 +5,7 @@ import com.udacity.jdnd.course3.critter.core.domain.pet.common.PetRepository;
 import com.udacity.jdnd.course3.critter.core.domain.pet.exception.PetNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class PetServiceImpl implements PetService {
         return repository.getPetsByCustomerId(ownerId);
     }
 
+    @Transactional
     @Override
     public Pet savePet(Pet pet) {
         return repository.save(pet);

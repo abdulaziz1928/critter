@@ -1,4 +1,4 @@
-package com.udacity.jdnd.course3.critter.web.infrastructure.config.maps;
+package com.udacity.jdnd.course3.critter.web.infrastructure.config.mappings;
 
 import com.udacity.jdnd.course3.critter.core.domain.pet.common.Pet;
 import com.udacity.jdnd.course3.critter.core.domain.user.common.Employee;
